@@ -8,7 +8,6 @@ export const Container = styled.section`
   scroll-snap-align: start;
   background-color: var(--clr-bg-secondary);
   padding: 2rem 1.5rem;
-  overflow-y: hidden;
 `;
 
 export const ContactHeadTextContainer = styled.div`
@@ -34,10 +33,10 @@ export const FormContainer = styled(animated.form)`
   border-radius: 8px;
   padding: 2rem;
   margin: 3rem auto;
-  position: relative;
-  z-index: 5;
 
   max-width: 1000px;
+
+  /* box-shadow: hsl(359, 76%, 75%) 0px 7px 29px 0px; */
 `;
 
 export const Label = styled.label`
@@ -96,15 +95,21 @@ export const Message = styled.p`
   color: var(--clr-accent);
   margin-bottom: 1rem;
   text-align: center;
+  z-index: 1;
+  position: relative;
 `;
 
-export const Blob = styled(Image)`
-  /* max-width: 1500px;
-  height: auto;
+export const Blob = styled.div`
+  /* z-index: 1;
 
-  opacity: 0.3;
   position: absolute;
-  left: 200px;
-  top: 
-  z-index: 1; */
+  width: 1100px;
+  height: 300px;
+
+  left: 400px;
+  top: 200px;
+
+  background: linear-gradient(216deg, rgba(255, 255, 255, 0.6) 20%, red);
+  /* border: 1px solid #ff0000; */
+  filter: blur(100px); */
 `;

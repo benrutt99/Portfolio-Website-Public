@@ -7,6 +7,8 @@ export const ProjectsCard = styled(animated.div)`
   border-radius: 8px;
   background-color: white;
   overflow: hidden;
+  position: relative;
+  z-index: 2;
 
   display: flex;
   flex: 1;
@@ -15,29 +17,13 @@ export const ProjectsCard = styled(animated.div)`
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  /* transition: transform 0.5s cubic-bezier(0.25, 0.75, 0.5, 1.25); */
+  /* box-shadow: hsl(359, 76%, 60%) 0px 20px 30px -10px; */
+  /* box-shadow: hsl(359, 76%, 75%) 0px 7px 29px 0px; */
 
   &:hover {
     background-color: HSL(0, 0%, 70%);
     transform: scale(1.01);
   }
-
-  /* &:nth-child(2) {
-    transform: translateY(-35px);
-    &:hover {
-      background-color: HSL(0, 0%, 70%);
-      transform: scale(1.02) translateY(-35px);
-    }
-
-    @media (max-width: 1050px) {
-      transform: translateY(0px);
-
-      &:hover {
-        background-color: HSL(0, 0%, 70%);
-        transform: scale(1.02) translateY(0);
-      }
-    }
-  } */
 `;
 
 export const ProjectImageContainer = styled.div`

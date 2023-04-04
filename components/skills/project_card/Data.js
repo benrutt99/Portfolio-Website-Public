@@ -10,6 +10,7 @@ export const Data = [
     For the design, I incorporated custom variables with CSS and utilized the Styled Components library 
     to create a polished and professional look. The website effectively communicated
      my business's offerings while emphasizing my commitment to customer satisfaction.`,
+    link: "",
   },
   {
     image: "/skills/yelp-camp.png",
@@ -25,6 +26,7 @@ export const Data = [
       campground data. Additionally, I leveraged the Cloudinary API to store campground
        photos and the Mapbox API to create cluster maps of available campgrounds.
         To ensure secure user authentication, I used Passport and JOI.`,
+    link: "https://yelp-camp-5wa4.onrender.com",
   },
   {
     image: "/skills/recipe.png",
@@ -40,5 +42,6 @@ export const Data = [
     routing and my REST API, I utilized the advanced features of Next.js.
      For the back-end, I implemented MongoDB with Mongoose to ensure a robust 
      and scalable architecture.`,
+    link: "",
   },
 ];

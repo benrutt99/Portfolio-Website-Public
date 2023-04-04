@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { animated } from "@react-spring/web";
+import SpringAnimation from "@/animations/scroll/SpringAnimation";
 
 export const Container = styled.section`
   background-color: var(--clr-bg-secondary);
   padding: 1rem 0;
   min-height: auto;
+  position: relative;
+  z-index: 3;
 
   min-height: 300px;
 `;
@@ -41,6 +44,32 @@ export const ProjectsContainer = styled.div`
   }
 `;
 
-export const CarouselContainer = styled(animated.div)`
+export const CarouselContainer = styled(SpringAnimation)`
   margin: 6rem 1rem;
+`;
+
+export const Blob = styled.div`
+  /* z-index: 0;
+  position: absolute;
+  width: 1100px;
+  height: 300px;
+  left: -600px;
+  top: 200px;
+
+  background: linear-gradient(
+    216deg,
+    rgba(255, 255, 255, 0.9) 20%,
+    hsl(359, 76%, 35%)
+  );
+  border: 1px solid #ff0000;
+  filter: blur(100px);
+
+  @media (max-width: 1050px) {
+    width: 1100px;
+    height: 1000px;
+  }
+
+  @media (max-width: 500px) {
+    display: none;
+  } */
 `;

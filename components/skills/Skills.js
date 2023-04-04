@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useTransition } from "@react-spring/web";
-import { useSpring } from "@react-spring/web";
 
 import ProjectCard from "./project_card/ProjectCard";
 import SkillsCarousel from "./skills_carousel/SkillsCarousel";
 import ProjectPopup from "./project_card/project_popup/ProjectPopup";
+
+//**ANIMATIONS**//
+import {
+  useWipeUpAnimation,
+  useAnimatedItems,
+} from "@/animations/scroll/AnimationTypes";
 
 import {
   Container,
@@ -14,6 +18,7 @@ import {
   SkillsHeadText,
   ProjectsContainer,
   CarouselContainer,
+  Blob,
 } from "./Skills.styles";
 
 import { Data } from "./project_card/Data";
@@ -22,6 +27,13 @@ export default function Skills() {
   const [idx, setIdx] = useState(-1);
   const [show, setShow] = useState(false);
   const [disableClick, setDisableClick] = useState(false);
+  const [mapData, setMapData] = useState([]);
+
+  //**In View Observer**//
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  });
 
   //**HANDLE CLICK EVENT FOR PROJECT CARD**//
   const handleClick = (idx) => {
@@ -41,14 +53,6 @@ export default function Skills() {
     }, 500);
   };
 
-  //ANIMATION
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-    triggerOnce: true,
-  });
-
-  const [mapData, setMapData] = useState([]);
-
   useEffect(() => {
     if (inView) {
       setMapData(Data);
@@ -57,62 +61,15 @@ export default function Skills() {
     }
   }, [inView]);
 
-  const animatedItems = useTransition(mapData, {
-    from: {
-      opacity: 0,
-      transform: "translateY(50px)",
-      config: {
-        mass: 0.4,
-        tension: 120,
-        friction: 25,
-        precision: 0.001,
-        velocity: 0.008,
-      },
-    },
-    enter: {
-      opacity: 1,
-      transform: "translateY(0px)",
-      config: {
-        mass: 0.4,
-        tension: 120,
-        friction: 25,
-        precision: 0.001,
-        velocity: 0.008,
-      },
-    },
-    leave: { opacity: 0, scale: 0, config: { duration: 200 } },
-    trail: 900,
-  });
-
-  const BackgroundOpacity = useSpring({
-    transform: inView ? "translateY(0px)" : "translateY(100px)",
-    opacity: inView ? `1` : "0.0",
-    config: {
-      mass: 1.4,
-      tension: 60,
-      friction: 25,
-      precision: 0.001,
-      velocity: 0.008,
-    },
-  });
-
-  const WipeUp = useSpring({
-    transform: inView ? "translateY(0px)" : "translateY(50px)",
-    opacity: inView ? `1` : "0.0",
-    config: {
-      mass: 1.4,
-      tension: 60,
-      friction: 25,
-      precision: 0.001,
-      velocity: 0.008,
-    },
-  });
+  //**ANIMATIONS**//
+  const wipeUp = useWipeUpAnimation(inView);
+  const animatedItems = useAnimatedItems(mapData);
 
   return (
     <>
       <Container id='skills' ref={ref}>
         <SkillsHeadContainer>
-          <SkillsHeadText style={WipeUp}>Projects</SkillsHeadText>
+          <SkillsHeadText style={wipeUp}>Projects</SkillsHeadText>
         </SkillsHeadContainer>
         <ProjectsContainer>
           {animatedItems((styleProps, item, _, idx) => {
@@ -125,15 +82,17 @@ export default function Skills() {
                 image={item.image}
                 title={item.title}
                 description={item.description}
+                link={item.link}
                 animatedStyle={styleProps}
               />
             );
           })}
+          <Blob />
         </ProjectsContainer>
         <SkillsHeadContainer>
-          <SkillsHeadText style={BackgroundOpacity}>Skills</SkillsHeadText>
+          <SkillsHeadText style={wipeUp}>Skills</SkillsHeadText>
         </SkillsHeadContainer>
-        <CarouselContainer style={BackgroundOpacity}>
+        <CarouselContainer style={wipeUp}>
           <SkillsCarousel />
         </CarouselContainer>
       </Container>

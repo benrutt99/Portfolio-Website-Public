@@ -11,6 +11,8 @@ import {
   ProjectHead,
   ProjectDescription,
   CloseButton,
+  LinkToWebsite,
+  LinkToWebsiteButton,
 } from "./ProjectPopup.styles";
 
 import { Data } from "../Data";
@@ -38,6 +40,15 @@ export default function ProjectHighlightPopup({ idx, closePopup }) {
         <TextContainer>
           <ProjectHead>{Data[idx].title}</ProjectHead>
           <ProjectDescription>{Data[idx].popupDescription}</ProjectDescription>
+          <LinkToWebsite
+            href='https://yelp-camp-5wa4.onrender.com'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {Data[idx].link.length > 0 && (
+              <LinkToWebsiteButton>View Website</LinkToWebsiteButton>
+            )}
+          </LinkToWebsite>
         </TextContainer>
       </PopupCard>
     </PopupContainer>

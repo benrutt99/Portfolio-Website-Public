@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { Link as ScrollLink } from "react-scroll";
 import { animated } from "@react-spring/web";
+import SpringAnimation from "@/animations/scroll/SpringAnimation";
 
 export const Container = styled.section`
   position: relative;
@@ -12,15 +13,14 @@ export const Container = styled.section`
   padding: 2rem 0;
 `;
 
-export const AboutMeTextContainer = styled.div`
+export const AboutMeTextContainer = styled(SpringAnimation)`
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const AboutMeHeadText = styled(animated.h1)`
+export const AboutMeHeadText = styled.h1`
   font-size: var(--fs-900);
   color: var(--clr-text-primary);
   text-align: center;
@@ -42,9 +42,7 @@ export const LeftCard = styled.div`
   padding: 2rem;
 `;
 
-export const AboutDescriptionContainers = styled(animated.div)``;
-
-export const AboutDescriptionText = styled.p`
+export const AboutDescriptionText = styled(animated.p)`
   color: var(--clr-text-primary);
   font-size: var(--fs-600);
   line-height: 3rem;
@@ -57,7 +55,7 @@ export const AboutDescriptionText = styled.p`
   }
 `;
 
-export const RightCard = styled(animated.div)`
+export const RightCard = styled(SpringAnimation)`
   display: flex;
   flex-direction: column;
 
@@ -78,7 +76,7 @@ export const BenImage = styled(Image)`
   clip-path: circle();
 `;
 
-export const ContactButton = styled(animated.button)`
+export const ContactButton = styled(SpringAnimation)`
   border-radius: 5px;
   font-size: var(--fs-700);
   border: none;
@@ -109,6 +107,5 @@ export const RadialBlur = styled.div`
 
   background: rgb(131, 58, 180);
   background: radial-gradient(hsl(359, 76%, 37%), white);
-  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
   filter: blur(100px);
 `;

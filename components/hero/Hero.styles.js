@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 import SpringAnimation from "@/animations/scroll/SpringAnimation";
 import { animated } from "@react-spring/web";
@@ -8,7 +8,6 @@ export const NavBarMaginTop = styled.div`
 `;
 
 export const VHContainer = styled.section`
-  /* CSS Snapping */
   min-height: calc(100vh - 80px);
   background-color: var(--clr-bg-primary);
 
@@ -22,9 +21,9 @@ export const VHContainer = styled.section`
     min-height: auto;
   }
 
-  @media (max-width: 760px) {
+  /* @media (max-width: 760px) {
     overflow: hidden;
-  }
+  } */
 `;
 
 export const HeroContainer = styled.div`
@@ -104,19 +103,45 @@ export const HeroImage = styled(Image)`
   }
 `;
 
-export const Blur = styled(animated.div)`
+//**ANIMATION FOR MOBILE PERFORMANCE**//
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+export const Blur = styled(SpringAnimation)`
   z-index: 1;
 
   position: absolute;
   width: 700px;
   height: 250px;
 
-  left: 100px;
+  left: 550px;
   top: 100px;
 
   background: linear-gradient(216deg, rgba(255, 255, 255, 0.6) 20%, red);
-  /* border: 1px solid #ff0000; */
   filter: blur(100px);
-`;
 
-//radial gradient
+  /* apply the animation to the component */
+  animation: ${fadeIn} 0.8s ease-in-out 1s forwards;
+
+  @media (max-width: 1050px) {
+    width: 300px;
+    height: 180px;
+    top: 80px;
+  }
+
+  @media (max-width: 940px) {
+    left: 700px;
+  }
+
+  @media (max-width: 450px) {
+    height: 80px;
+    top: 80px;
+    left: 580px;
+  }
+`;

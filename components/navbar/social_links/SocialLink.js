@@ -8,12 +8,20 @@ export default function SocialLink() {
   return (
     <>
       <Card className='.fade'>
-        <SLink href='https://github.com/benrutt99'>
+        <SLink
+          href='https://github.com/benrutt99'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           <AiFillGithub style={{ fontSize: "2.5rem" }} />
         </SLink>
       </Card>
       <Card>
-        <SLink href='https://www.linkedin.com/in/benrutt/'>
+        <SLink
+          href='https://www.linkedin.com/in/benrutt/'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           <FaLinkedinIn style={{ fontSize: "2.5rem" }} />
         </SLink>
       </Card>

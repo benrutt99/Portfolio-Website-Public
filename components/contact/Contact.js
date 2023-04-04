@@ -1,7 +1,9 @@
 import { sendContactForm } from "@/config/api";
 import React, { useState } from "react";
-import { useSpring } from "@react-spring/web";
 import { useInView } from "react-intersection-observer";
+
+//**ANIMATIONS**//
+import { useWipeUpAnimation } from "@/animations/scroll/AnimationTypes";
 
 import {
   Container,
@@ -16,8 +18,6 @@ import {
   Message,
   Blob,
 } from "./Contact.styles";
-
-import BlobSrc from "/public/svg/blob.svg";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -49,31 +49,22 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  //**In View Observer**//
   const { ref, inView } = useInView({
     threshold: 0.1,
-
     triggerOnce: true,
   });
 
-  const FadeIn = useSpring({
-    transform: inView ? "translateY(0px)" : "translateY(100px)",
-    opacity: inView ? `1` : "0.0",
-    config: {
-      mass: 1.5,
-      tension: 100,
-      friction: 50,
-      precision: 0.001,
-      velocity: 0.008,
-    },
-  });
+  //**ANIMATIONS**//
+  const wipeUp = useWipeUpAnimation(inView);
 
   return (
     <Container id='contact'>
       <ContactHeadTextContainer ref={ref}>
-        <ContactHeadText style={FadeIn}>Contact</ContactHeadText>
+        <ContactHeadText style={wipeUp}>Contact</ContactHeadText>
       </ContactHeadTextContainer>
 
-      <FormContainer onSubmit={handleSubmit} style={FadeIn}>
+      <FormContainer onSubmit={handleSubmit} style={wipeUp}>
         {showMessage && (
           <MessageDiv>
             {" "}
@@ -105,6 +96,7 @@ export default function Contact() {
         />
         <SubmitButton type='submit'>Submit</SubmitButton>
       </FormContainer>
+      <Blob />
     </Container>
   );
 }
