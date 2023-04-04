@@ -13,10 +13,7 @@ export default function Home() {
       <Head>
         <title>About Ben Rutt</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        <meta
-          name='description'
-          content='Tell us about your business to get started with us...'
-        />
+        <meta name='description' content='About Ben Rutt' />
       </Head>
       <Navbar />
       <Hero />
