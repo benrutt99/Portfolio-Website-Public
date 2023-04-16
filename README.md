@@ -1,7 +1,7 @@
 # Personal Website Hosted on AWS - www.aboutbenrutt.com
 
 This is my personal website for displaying information about me and my portfolio.
-This is a Next.js project and I used React with Styled Components to build it.
+This project was built using React with Styled Components.
 For the contact functionality I created an SMTP server using my gmail.
 
 # Next.JS README:
